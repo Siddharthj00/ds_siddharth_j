@@ -1,64 +1,44 @@
-# 📊 Data Science Project: Bitcoin Trader Behavior vs. Market Sentiment
+# Data Science Assignment: Trader Sentiment Analysis
 
-## 🎯 1. Project Overview
-
-This project investigates the influence of collective investor psychology on actual trading outcomes in the cryptocurrency market. Specifically, we analyze the relationship between the **Bitcoin (BTC) Fear & Greed Index** (market sentiment) and **aggregated trader behavior** (profitability and activity) using a historical dataset of trades.
-
-### Key Research Questions
-* How does trader profitability (`Closed PnL`) change across different market sentiments (Fear, Greed, Neutral)?
-* Is the Fear & Greed Index a **contrarian or confirming indicator** for the average trader?
-* How does the overall **trading volume** correlate with increasing market sentiment?
+**Author:** <Your Name>
 
 ---
 
-## ✨ 2. Core Findings (Executive Summary)
+## Project Objective
 
-The analysis confirms the **Contrarian Principle** in crypto markets:
-
-| Sentiment Category | Average Daily Net PnL (USD) | Implication |
-| :--- | :--- | :--- |
-| **Fear** | **Highest Profitability** | The most lucrative period for opening positions. |
-| **Greed / Extreme Greed** | **Significantly Lower Profitability** | A caution or profit-taking signal, as markets become overbought. |
-| **Extreme Fear** | **Lowest Profitability** | Highly volatile and unpredictable; profitability is weakest here. |
-
-A statistically significant **negative correlation** was found between the numerical Sentiment Value and both Net PnL and Total Trade Volume.
+This project analyzes the relationship between the trading behavior of crypto traders and overall market sentiment. [cite_start]Using historical trade data and the Bitcoin Fear & Greed Index, the goal is to identify statistically significant patterns and trends that could inform smarter, data-driven trading strategies[cite: 38, 39].
 
 ---
 
-## 🛠️ 3. Methodology and Data Processing
+## Datasets Used
 
-The analysis was performed by integrating and aligning two distinct time-series datasets.
-
-### 3.1. Datasets Used
-1.  **Historical Trading Data:** High-granularity transactional data including `Account`, `Coin`, `Execution Price`, `Size USD`, `Closed PnL`, and `Timestamp IST`.
-2.  **Fear & Greed Index Data:** Daily sentiment scores including `Date`, `Value` (0-100), and `Classification`.
-
-### 3.2. Step-by-Step Process (Notebook: `notebook1.ipynb`)
-
-| Step | Action Taken | Rationale |
-| :--- | :--- | :--- |
-| **Data Cleaning** | Converted all time-based columns (`Timestamp IST`, `Date`) to a standard **daily datetime format** to enable accurate joining. | Necessary for comparing fine-grained trades against daily sentiment scores. |
-| **Filtering** | Filtered the multi-coin trading data to isolate **only BTC trades** (`Coin == 'BTC'`). | Ensures the trade data is directly relevant to the BTC Fear & Greed Index. |
-| **Aggregation** | Grouped individual BTC trades by **`Date`** and calculated **daily metrics** (Sum of `Closed PnL`, Sum of `Size USD` as Total Volume). | Condensed millions of rows into a daily frequency to match the sentiment data. |
-| **Merging** | Performed an **inner join** on the common `Date` key to create the final analysis DataFrame. | Final dataset for correlation and group-by analysis. |
+* [cite_start]**Bitcoin Market Sentiment:** A daily record of the Fear & Greed Index, which includes a sentiment classification like 'Fear', 'Greed', etc.[cite: 33, 34].
+* [cite_start]**Historical Trader Data:** A granular dataset of individual trades from Hyperliquid, detailing trade size, direction, and profitability[cite: 35, 36].
 
 ---
 
-## 💻 4. Technical Requirements
+## Summary of Findings
 
-This project was built using standard Python data science libraries.
+The analysis concluded that a strong inverse correlation exists between market sentiment and average trader profitability.
 
-* **Platform:** Google Colab / Jupyter Notebook
-* **Language:** Python 3.x
-* **Key Libraries:** `pandas`, `numpy`, `matplotlib`, `seaborn`
-
-### Code Execution
-The entire analysis is contained within the `notebook1.ipynb` file and can be run sequentially on Google Colab without any local environment setup.
+* **Contrarian Profitability:** The most profitable trades, on average, were executed during periods of "Extreme Fear," suggesting that buying when the market is pessimistic is a historically effective strategy.
+* **High-Volume Greed:** Periods of "Greed" and "Extreme Greed" saw high trading volume but lower average profitability, indicating a riskier, herd-driven market environment.
+* **Top Trader Behavior:** Top traders (by volume) demonstrated an even stronger tendency to profit from market fear, suggesting they employ contrarian strategies more effectively than the average participant.
 
 ---
 
-## 🚀 5. Next Steps / Potential Future Work
+## Repository Contents
 
-* **Lagged Analysis:** Test for correlation using a time lag (e.g., how does today's sentiment correlate with tomorrow's PnL) to see if the index has predictive power.
-* **Account-Level Deep Dive:** Group the data by `Account` to see if **profitable accounts** diverge from market sentiment more strongly than unprofitable accounts.
-* **Risk Metric:** Analyze the relationship between sentiment and trade risk (e.g., average `Size USD` to `Closed PnL` ratio) to understand leverage and risk-taking behavior.
+* [cite_start]**`notebook_1.ipynb`**: The main Google Colab notebook containing all Python code for data cleaning, analysis, and visualization[cite: 9, 10, 11].
+* [cite_start]**`ds_report.pdf`**: A detailed report summarizing the final insights, methodology, and strategic recommendations[cite: 19, 25].
+* [cite_start]**`README.md`**: This file, providing an overview and setup instructions[cite: 20, 21].
+* [cite_start]**`csv_files/`**: A directory containing the raw datasets used in the analysis[cite: 15, 16, 22].
+* [cite_start]**`outputs/`**: A directory containing all saved charts and visual outputs generated during the analysis[cite: 17, 18, 23, 24].
+
+---
+
+## How to Run
+
+1.  **Environment:** This project is designed to be run in a Google Colab environment.
+2.  **Libraries:** The analysis requires the following Python libraries: `pandas`, `matplotlib`, and `seaborn`.
+3.  **Execution:** Open `notebook_1.ipynb` in Google Colab. Ensure the file paths for the datasets are correct, then execute the notebook cells sequentially.
