@@ -1,4 +1,4 @@
-# Data Science Assignment: Trader Sentiment Analysis
+Trader Sentiment Analysis
 
 
 ---
